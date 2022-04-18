@@ -1,11 +1,21 @@
-'use strict'
-let number =5;
+const numberOfFilms = +prompt("Скільки фільмів ви вже подивились?", "");
 
-const leftBorderWith=1;
+const personalMovieDB = {
+  count: numberOfFilms,
+  movies: {},
+  actors: {},
+  genres: [],
+  privat: false,
+};
 
-number = 10;
-console.log(number);
+const nameFilm1 = prompt("Один з останніх переглянутих фільмів", ""),
+  ratingFilm1 = prompt("Яку б ви оцінку йому поставили?", ""),
+  nameFilm2 = prompt("Один з останніх переглянутих фільмів", ""),
+  ratingFilm2 = prompt("Яку б ви оцінку йому поставили?", "");
 
-const obj={
-    a:50
-}
+
+personalMovieDB.movies[nameFilm1]=ratingFilm1;
+personalMovieDB.movies[nameFilm2]=ratingFilm2
+
+
+  console.log(personalMovieDB);
