@@ -1,4 +1,13 @@
-const numberOfFilms = prompt("Скільки фільмів ви вже подивились?", "");
+let numberOfFilms;
+
+function start() {
+  numberOfFilms = prompt("Скільки фільмів ви вже подивились?", "");
+
+  while (numberOfFilms == "" || numberOfFilms == null || isNaN(numberOfFilms)) {
+    numberOfFilms = prompt("Скільки фільмів ви вже подивились?", "");
+  }
+}
+start();
 
 const personalMovieDB = {
   count: numberOfFilms,
@@ -8,40 +17,52 @@ const personalMovieDB = {
   privat: false,
 };
 
-// const nameFilm1 = prompt("Один з останніх переглянутих фільмів", ""),
-//   ratingFilm1 = prompt("Яку б ви оцінку йому поставили?", ""),
-//   nameFilm2 = prompt("Один з останніх переглянутих фільмів", ""),
-//   ratingFilm2 = prompt("Яку б ви оцінку йому поставили?", "");
-
-// personalMovieDB.movies[nameFilm1] = ratingFilm1;
-// personalMovieDB.movies[nameFilm2] = ratingFilm2;
-
 //  заміняєм повторення питань на цикл (внизу)
 
-// for (let i = 0; i < 2; i++) {
-//   const nameFilm1 = prompt("Один з останніх переглянутих фільмів", ""),
-//     ratingFilm1 = prompt("Яку б ви оцінку йому поставили?", "");
+function rememberMyFilms() {
+  for (let i = 0; i < 2; i++) {
+    const a = prompt("Один з останніх переглянутих фільмів", ""),
+      b = prompt("Яку б ви оцінку йому поставили?", "");
 
-// // умови на пусту строку , відміну і к-ть символів більше ніж 50
+    // умови на пусту строку , відміну і к-ть символів більше ніж 50
 
-//   if (nameFilm1 != null && ratingFilm1 != null&& nameFilm1!='' && ratingFilm1!='' && nameFilm1.length<50){
-//     personalMovieDB.movies[nameFilm1] = ratingFilm1;
-// console.log('done');
-//   } else{
-//     console.log('error');
-//     // повертає один цикл назад, і воно запускає ше раз питання
-//     i--
-//   }
-// }
-// console.log(personalMovieDB);
-
-
-if (personalMovieDB.count <= 10) {
-  alert("Мало фільмів");
-} else if (personalMovieDB.count < 30) {
-  alert("Середна к-сть фільмів");
-} else if (personalMovieDB.count >=30) {
-  alert("кіноман");
-} else{
-  alert('error')
+    if (a != null && b != null && a != "" && b != "" && a.length < 50) {
+      personalMovieDB.movies[a] = b;
+      console.log("done");
+    } else {
+      console.log("error");
+      i--;
+      // повертає один цикл назад, і воно запускає ше раз питання
+    }
+  }
 }
+rememberMyFilms();
+
+function writeYourGenres() {
+  for (let i = 0; i < 3; i++) {
+    personalMovieDB.genres[i] =prompt(`Ваш любимий жанр під номером ${i + 1}`, "");
+  }
+}
+writeYourGenres();
+
+function detectPersonalLevel() {
+  if (personalMovieDB.count <= 10) {
+    alert("Мало фільмів");
+  } else if (personalMovieDB.count < 30) {
+    alert("Середна к-сть фільмів");
+  } else if (personalMovieDB.count >= 30) {
+    alert("кіноман");
+  } else {
+    alert("error");
+  }
+}
+detectPersonalLevel();
+
+function showMyDB(hidden) {
+  if (!hidden) {
+    console.log(personalMovieDB);
+  }
+}
+showMyDB(personalMovieDB.privat);
+
+console.log(personalMovieDB);
